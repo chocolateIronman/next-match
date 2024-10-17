@@ -12,7 +12,7 @@ export default function RegisterForm() {
     register,
     handleSubmit,
     setError,
-    formState: { errors, isValid },
+    formState: { errors, isValid, isSubmitting },
   } = useForm<RegisterSchema>({
     resolver: zodResolver(registerSchema),
     mode: "onTouched",
@@ -82,6 +82,7 @@ export default function RegisterForm() {
               </p>
             )}
             <Button
+              isLoading={isSubmitting}
               isDisabled={!isValid}
               fullWidth
               color="secondary"
