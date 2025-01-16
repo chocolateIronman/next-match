@@ -1,6 +1,7 @@
 "use client";
 import { registerUser } from "@/app/actions/authActions";
 import { registerSchema, RegisterSchema } from "@/lib/schemas/registerSchema";
+import { handleFormServerErrors } from "@/lib/util";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button, Card, CardBody, CardHeader, Input } from "@nextui-org/react";
 import React from "react";
@@ -23,17 +24,8 @@ export default function RegisterForm() {
 
     if (result.status === "success") {
       console.log("User registered successfully");
-    }
-
-    if (result.status === "error") {
-      if (Array.isArray(result.error)) {
-        result.error.forEach((e) => {
-          const fieldName = e.path.join(".") as "email" | "name" | "password";
-          setError(fieldName, { message: e.message });
-        });
-      } else {
-        setError("root.serverError", { message: result.error });
-      }
+    } else {
+      handleFormServerErrors(result, setError);
     }
   };
 
