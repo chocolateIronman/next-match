@@ -1,6 +1,7 @@
 "use client";
 
 import { signOutUser } from "@/app/actions/authActions";
+import { transformImageUrl } from "@/lib/util";
 import {
   Avatar,
   Dropdown,
@@ -14,10 +15,10 @@ import Link from "next/link";
 import React from "react";
 
 type Props = {
-  user: Session["user"];
+  userInfo: { name: string | null; image: string | null } | null;
 };
 
-export default function UserMenu({ user }: Readonly<Props>) {
+export default function UserMenu({ userInfo }: Readonly<Props>) {
   return (
     <Dropdown placement="bottom-end">
       <DropdownTrigger>
@@ -26,9 +27,9 @@ export default function UserMenu({ user }: Readonly<Props>) {
           as="button"
           className="transition-transform"
           color="secondary"
-          name={user?.name ?? "user avatar"}
+          name={userInfo?.name ?? "user avatar"}
           size="sm"
-          src={user?.image ?? "/images/user.png"}
+          src={transformImageUrl(userInfo?.image) ?? "/images/user.png"}
         />
       </DropdownTrigger>
       <DropdownMenu variant="flat" aria-label="User actions menu">
@@ -39,7 +40,7 @@ export default function UserMenu({ user }: Readonly<Props>) {
             className="h-14 flex flex-row"
             aria-label="username"
           >
-            Signed in as {user?.name}
+            Signed in as {userInfo?.name}
           </DropdownItem>
         </DropdownSection>
         <DropdownItem as={Link} href="/members/edit">

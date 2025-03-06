@@ -1,6 +1,6 @@
 "use client";
 
-import { calculateAge } from "@/lib/util";
+import { calculateAge, transformImageUrl } from "@/lib/util";
 import {
   Button,
   Card,
@@ -26,7 +26,7 @@ export default function MemberSidebar({ member, navLinks }: Readonly<Props>) {
       <Image
         height={200}
         width={200}
-        src={member.image || "/images/user.png"}
+        src={transformImageUrl(member.image) ?? "/images/user.png"}
         alt="User profile main image"
         className="rounded-full mt-6 aspect-square object-cover"
       />
