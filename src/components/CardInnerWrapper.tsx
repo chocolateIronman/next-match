@@ -7,7 +7,7 @@ type Props = {
   footer?: ReactNode;
 };
 
-export default function cardInnerWrapper({ header, body, footer }: Props) {
+export default function CardInnerWrapper({ header, body, footer }: Props) {
   return (
     <>
       <CardHeader>
@@ -16,7 +16,6 @@ export default function cardInnerWrapper({ header, body, footer }: Props) {
         ) : (
           <>{header}</>
         )}
-        Chat
       </CardHeader>
       <Divider />
       <CardBody>{body}</CardBody>

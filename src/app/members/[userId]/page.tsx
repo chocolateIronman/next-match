@@ -1,5 +1,5 @@
 import { getMemberByUserId } from "@/app/actions/memeberActions";
-import CardInnerWrapper from "@/components/cardInnerWrapper";
+import CardInnerWrapper from "@/components/CardInnerWrapper";
 import { notFound } from "next/navigation";
 import React from "react";
 
