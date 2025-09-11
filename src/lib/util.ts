@@ -1,9 +1,13 @@
-import { differenceInYears } from "date-fns";
+import { differenceInYears, format } from "date-fns";
 import { FieldValues, Path, UseFormSetError } from "react-hook-form";
 import { ZodIssue } from "zod";
 
 export function calculateAge(dob: Date) {
   return differenceInYears(new Date(), dob);
+}
+
+export function formatShortDateTime(date: Date) {
+  return format(date, "dd MMM yy h:mm:a");
 }
 
 export function handleFormServerErrors<TFieldValues extends FieldValues>(

@@ -5,6 +5,7 @@ import { ActionResult } from "@/types";
 import { Message } from "@prisma/client";
 import { getAuthUserId } from "./authActions";
 import { prisma } from "@/lib/prisma";
+import { mapMessageToDto } from "@/lib/mappings";
 
 export async function createMessage(
   recipientUserId: string,
@@ -65,7 +66,7 @@ export async function getMessageThread(recipientId: string) {
         },
       },
     });
-    return { status: "success", data: messages };
+    return messages.map((message) => mapMessageToDto(message));
   } catch (error) {
     console.log(error);
     throw error;
