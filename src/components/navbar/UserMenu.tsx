@@ -22,15 +22,16 @@ export default function UserMenu({ userInfo }: Readonly<Props>) {
   return (
     <Dropdown placement="bottom-end">
       <DropdownTrigger>
-        <Avatar
-          isBordered
-          as="button"
-          className="transition-transform"
-          color="secondary"
-          name={userInfo?.name ?? "user avatar"}
-          size="sm"
-          src={transformImageUrl(userInfo?.image) ?? "/images/user.png"}
-        />
+        <button className="outline-none focus:ring-2 focus:ring-secondary rounded-full">
+          <Avatar
+            isBordered
+            className="transition-transform cursor-pointer"
+            color="secondary"
+            name={userInfo?.name ?? "user avatar"}
+            size="sm"
+            src={transformImageUrl(userInfo?.image) ?? "/images/user.png"}
+          />
+        </button>
       </DropdownTrigger>
       <DropdownMenu variant="flat" aria-label="User actions menu">
         <DropdownSection>
